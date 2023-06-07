@@ -1,12 +1,10 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react'
-import { Portfolio } from './portfolio'
 
-export const ProjectList = () => {
-
-
+export const ProjectList = (props) => {
 
   return (
-    <div></div>
+    <div>{props.photos.map(i => <img src={i.img}></img>)}
+  </div>
   )
 }

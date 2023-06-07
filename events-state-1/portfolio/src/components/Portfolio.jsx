@@ -1,29 +1,32 @@
 import React from 'react'
 import { useState } from 'react'
 import { photo } from '../../public/photo'
+import { ProjectList } from './projectList'
+import { Toolbar } from './Toolbar'
 
-export const Portfolio = () => {
-    const filters=["All", "Websites", "Flayers", "Business Cards"] 
-    const selected="All";
-    const [state, setState] = useState(selected)
+export const Portfolio = () => {  
+  const filters=["All", "Websites", "Flayers", "Business Cards"] 
+  const selected="All";
+  const [state, setState] = useState(selected)
 
-    const listItems = filters.map((filter) =>
-    <input type="button" key={filter} value={filter} readOnly></input>
-    )
 
-    const pictures = photo.map(i =>
-        <img key={i.img.slice(50,60)+Math.random()} src={i.category == 
-          state || state == 'All' ? i.img: ''}></img>
-        )
+  let photos = []
+    if (state !== 'All') {
+      photos = photo.filter((photo) => photo.category === state) 
+    } else {
+      photos = photo
+    }
+
 
     const handleFilterChange = (event) => {
-        setState(event.target.value)
-    }
+      setState(event.target.value)
+      console.log(state)
+     }
 
   return (
     <div>
-        < div className='ContainerButtons' onClick={handleFilterChange}>{listItems}</div>
-        <div className="container">{pictures}</div>
+        <div onClick={handleFilterChange}><Toolbar filter={filters}/></div>
+        <ProjectList photos={photos} selected={selected} />
     </div>
     
   )
