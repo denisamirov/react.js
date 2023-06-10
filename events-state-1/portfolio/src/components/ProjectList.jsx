@@ -4,7 +4,8 @@ import React from 'react'
 export const ProjectList = (props) => {
 
   return (
-    <div>{props.photos.map(i => <img src={i.img}></img>)}
-  </div>
+    <div>
+      {props.photos.map(i => <img className="card" src={i.img}></img>)}
+    </div>
   )
 }

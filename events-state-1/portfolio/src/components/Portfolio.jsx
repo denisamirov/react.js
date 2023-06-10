@@ -1,14 +1,14 @@
 import React from 'react'
 import { useState } from 'react'
 import { photo } from '../../public/photo'
-import { ProjectList } from './projectList'
+import { ProjectList } from './ProjectList'
 import { Toolbar } from './Toolbar'
 
-export const Portfolio = () => {  
+export const Portfolio = () => {
+
   const filters=["All", "Websites", "Flayers", "Business Cards"] 
   const selected="All";
   const [state, setState] = useState(selected)
-
 
   let photos = []
     if (state !== 'All') {
@@ -17,15 +17,15 @@ export const Portfolio = () => {
       photos = photo
     }
 
-
-    const handleFilterChange = (event) => {
-      setState(event.target.value)
-      console.log(state)
-     }
+  const handleFilterChange = (event) => {
+    setState(event.target.value)
+    }
 
   return (
     <div>
-        <div onClick={handleFilterChange}><Toolbar filter={filters}/></div>
+        <div onClick={handleFilterChange}>
+          <Toolbar filter={filters}/>
+        </div>
         <ProjectList photos={photos} selected={selected} />
     </div>
     
