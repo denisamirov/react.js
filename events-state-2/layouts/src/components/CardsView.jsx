@@ -4,7 +4,7 @@ export const CardsView = (props) => {
   return (
     <div className='main'>
             {props.cards.map(i => 
-                <div className='ShopCard'>
+                <div className='ShopCard' key={i.name+i.color}>
                     <h2 id="name">{i.name}</h2>
                     <h3 id="color">{i.color}</h3>  
                     <img src={i.img}></img>

@@ -5,7 +5,7 @@ export const ProjectList = (props) => {
 
   return (
     <div>
-      {props.photos.map(i => <img className="card" src={i.img}></img>)}
+      {props.photos.map(i => <img className="card" src={i.img} key={Math.random()}></img>)}
     </div>
   )
 }

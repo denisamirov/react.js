@@ -52,7 +52,7 @@ img {
   margin: 0.4% auto;
 }
 
-input:hover {
+span:hover {
   cursor: pointer;
   transition-duration: 0.5s;
   background-color: grey;
@@ -60,7 +60,7 @@ input:hover {
   font-weight: 500;
 }
 
-[type="button"] {
+span {
   background-color: rgb(255, 255, 255);
   color: black;
   padding: 0.7% 2.5%;

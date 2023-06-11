@@ -17,16 +17,16 @@ export const Portfolio = () => {
       photos = photo
     }
 
-  const handleFilterChange = (event) => {
-    setState(event.target.value)
+  const handleFilterChange = (i) => {
+    setState(i)
     }
 
   return (
     <div>
-        <div onClick={handleFilterChange}>
-          <Toolbar filter={filters}/>
+        <div>
+          <Toolbar filter={filters} onChangeCategory={handleFilterChange}/>
         </div>
-        <ProjectList photos={photos} selected={selected} />
+          <ProjectList photos={photos} selected={selected} />
     </div>
     
   )

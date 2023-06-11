@@ -127,6 +127,7 @@
   padding: 1% 2%;
   background-color: rgb(255, 255, 255);
   transition-duration: 1s;
+  margin: 1% 0%;
 }
 
 .ShopItem #add:hover {

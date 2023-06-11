@@ -4,7 +4,7 @@ export const ListView = (props) => {
   return (
     <div className='mainList'>
     {props.items.map(i => 
-        <div className='ShopItem'>
+        <div className='ShopItem' key={i.name+i.color}>
             <img src={i.img}></img>
             <h2 id="name">{i.name}</h2>
             <h3 id="color">{i.color}</h3>  
