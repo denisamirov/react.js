@@ -5,5 +5,5 @@ export interface data {
 
 export type Props = {
     url: string,
-    opts?: string
+    opts: string
   }
