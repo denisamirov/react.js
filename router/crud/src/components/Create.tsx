@@ -2,6 +2,8 @@ import { Form } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import { Row } from "react-bootstrap";
+import { Col } from "react-bootstrap";
 
 export const Create = () => {
     const [data, setData] = useState();
@@ -17,9 +19,6 @@ export const Create = () => {
             },
             body: JSON.stringify({content: data})
         })
-        .then(data => {
-            console.log(data)
-        })
         .catch(err => {
             console.log(err)
         })
@@ -32,11 +31,19 @@ export const Create = () => {
       };
 
   return (
-    <>
-        <Form onSubmit={handleSubmit}>
-            <Form.Control as="textarea" rows={3} onChange={handleDateChange}/>
-            <Button variant="primary" type="submit"> create </Button>
-
+    <> 
+        <Form onSubmit={handleSubmit} className='form'>
+            <Row>
+                <Col className="createForm">
+                <Button className="buttonClose" onClick={() => {navigate("/")}}>x</Button>
+                    <Form.Control as="textarea" rows={3} onChange={handleDateChange} id="textCreate"/>
+                </Col>
+            </Row>
+            <Row>
+                <Col>
+                    <Button variant="primary" type="submit" id="createButton"> create </Button>
+                </Col>
+            </Row>
         </Form>
     </>
   )

@@ -29,13 +29,13 @@ export const Cards = () => {
           <Link to="/posts/new">
             <Button>Create post</Button>
           </Link>
-          <div>
+          <div className='cards'>
             {state.map((i, index) => 
-              <Card key={index}>
+              <Card key={index} className="card">
                 <Card.Text>
-                  {i.content}
+                  {i.content.length > 7 ? `${i.content.slice(0,7)}...` : i.content}
                 </Card.Text>
-                <Link to={`/posts/${i.id}`}>Подробнее</Link>
+                <Link to={`/posts/${i.id}`}>learn more...</Link>
               </Card>)}
           </div>
       </div>
