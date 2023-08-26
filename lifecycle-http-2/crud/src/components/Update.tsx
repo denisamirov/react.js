@@ -31,7 +31,7 @@ export const Update = () => {
         handleUpdate()
     }, [])
 
-    const handleDelete= async (index:number, id:number) => {
+    const handleDelete = async (index:number, id:number) => {
         const updatedData = [...items];
         updatedData.splice(index, 1);
         setItems(updatedData);

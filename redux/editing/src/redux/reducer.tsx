@@ -1,7 +1,7 @@
 import { CHANGE_PRICE, EDIT, 
     SET_USER_PRICE, CHANGE_NAME, 
     SET_USER_NAME, CREATE_CARD, 
-    UPDATE_CARDS, ID } from "./actions";
+    UPDATE_CARDS, ID, FILTER, DELETE } from "./actions";
 
 const initialState = {
   value: [],
@@ -9,8 +9,9 @@ const initialState = {
   name: [],
   userName: '',
   cards: [],
-  edit: -1,
-  id: 0 
+  edit: {stateEdit: 1, title: '', price: '', id: ''},
+  id: 0,
+  filter: []
 };
 
 const priceReducer = (state = initialState, action) => {
@@ -40,11 +41,21 @@ const priceReducer = (state = initialState, action) => {
             ...state,
             id: action.payload + 1
         }
+    case DELETE:
+        return {
+            ...state,
+            cards: state.cards.filter((card) => card.id !== action.payload)
+        }
+    case FILTER: 
+        return {
+            ...state,
+            filter: state.cards.filter(card => card.title.includes(action.payload))
+        }
     case CREATE_CARD: 
         return {
             ...state,
             cards: [...state.cards, {
-                id: action.payload.cardId,
+                id: action.payload.id,
                 title: action.payload.title,
                 price: action.payload.price
             }]
@@ -55,14 +66,11 @@ const priceReducer = (state = initialState, action) => {
             edit: action.payload
         }
     case UPDATE_CARDS: 
-        const {id, userName, userValue} = action.payload;
-        const updatedCards = state.cards.map(card => {
-            if (card.id === id) {
-                return {...card, ...{id:id, title:userName, price:userValue}};
-            }
-            return card;
-        })
-        return {...state, cards:updatedCards};
+        const {id, title, price} = action.payload
+        return {...state, 
+            cards: state.cards.map(card => 
+                card.id === id ? {id:id, title:title, price:price} : card )
+        };
     default:
       return state;
   }

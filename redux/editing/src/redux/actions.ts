@@ -6,6 +6,8 @@ export const CREATE_CARD = 'CREATE_CARD';
 export const EDIT = 'EDIT';
 export const UPDATE_CARDS = 'UPDATE_CARDS';
 export const ID = 'ID';
+export const FILTER = 'FILTER';
+export const DELETE = 'DELETE';
 
 export default {
   CHANGE_NAME,
@@ -15,5 +17,7 @@ export default {
   CREATE_CARD,
   EDIT,
   UPDATE_CARDS,
-  ID
+  ID,
+  FILTER,
+  DELETE
 };

@@ -1,7 +1,7 @@
-const createCard = (cardId, title, price) => ({
+const createCard = (id, title, price) => ({
     type: "CREATE_CARD",
     payload: {
-        cardId,
+        id,
         title,
         price
     }

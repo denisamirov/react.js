@@ -3,30 +3,56 @@ import { Row } from "react-bootstrap"
 import { Col } from 'react-bootstrap'
 import { Button } from 'react-bootstrap'
 import edita from "../redux/edit";
-
+import { SET_USER_NAME, SET_USER_PRICE } from "../redux/actions";
+import { DELETE, FILTER } from "../redux/actions";
+import { card } from "../module/module";
 
 export const Cards = () => {
    const dispatch = useDispatch();
-    const { value: numberValue, name: users, cards, edit } = useSelector((state) => state.price);
+    const { filter } = useSelector((state) => state.price);
     
-    const handleGetData = (e) => {
-        const number = (e.target.id).slice(5,);
-        const obj = cards.find(item => item.cardId == number);
-        document.getElementById('name').value = obj.title;
-        document.getElementById('pri').value = obj.price;
-        dispatch(edita(1))
+    const handleGetData = (title:card, price:card, id:card) => {
+        dispatch(edita({stateEdit: 0, title: title, price: price, id: id}))
+        document.getElementById('name').value = title;
+        document.getElementById('pri').value = price;
+        
+        dispatch({
+          type: SET_USER_NAME,
+          payload: title,
+        });
+
+        dispatch({
+          type: SET_USER_PRICE,
+          payload: price,
+        });
+        
     }
+
+    const handleDelete = (id:number) => {
+      dispatch({
+        type: DELETE,
+        payload: id,
+      });
+
+    
+      dispatch({
+        type: FILTER,
+        payload: ''
+      });
+
+    } 
   
+    
     return (
     <>
     <div className="cards">
-        {cards.map(i => 
+        {filter.map(i => 
         <div key={i.id}>
             <Row>
                 <Col>{i.title}</Col> 
                 <Col>{i.price}</Col>
-                <Col><Button id={'edit-' + i.id} onClick={handleGetData}>edit</Button></Col>
-                <Col><Button id={'del-' + i.id} variant="danger">delete</Button></Col>
+                <Col><Button onClick={() => handleGetData(i.title, i.price, i.id)}>edit</Button></Col>
+                <Col><Button variant="danger" onClick={() => handleDelete(i.id)}>delete</Button></Col>
             </Row>
         </div>)}
     </div>
@@ -36,7 +62,7 @@ export const Cards = () => {
 
 
 
-const mapStateToProps = (state, props) => {
+const mapStateToProps = (state) => {
     return {
       numberValue: state.price.value,
       userValue: state.price.userValue,
